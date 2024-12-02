@@ -18,7 +18,9 @@
 	<h2>Sensors</h2>
 
 	<form th:action="@{/sensors/view}">
+		<span>Фильтр по названию:</span>
 		<input type="text" th:value="${filterByNameValue}" name="filterByNameValue"/> 
+		<span>  Фильтр по модели:</span>
 		<input type="text" th:value="${filterByModelValue}" name="filterByModelValue"/> 
 		<input type="submit"/>
 	</form>
