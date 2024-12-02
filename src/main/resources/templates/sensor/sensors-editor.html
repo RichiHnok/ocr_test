@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<style>
+		table,
+		th,
+		td {
+			border: 1px solid gray;
+			vertical-align: middle;
+			text-align: start;
+		}
+	</style>
+</head>
+<body>
+	<h2>Sensors</h2>
+	<br>
+	<input type="button" value="Add Sensor" onclick="window.location.href = 'addSensor'"/>
+	<br>
+	<table><thead>
+		<tr>
+		  <th rowspan="2" width="35px">ID</th>
+		  <th rowspan="2" width="200px">Name</th>
+		  <th rowspan="2" width="130px">model</th>
+		  <th colspan="2" style="text-align: center;">Range</th>
+		  <th rowspan="2" width="80px">Type</th>
+		  <th rowspan="2" width="150px">Location</th>
+		  <th rowspan="2" width="300px">Description</th>
+		  <th colspan="2" style="text-align: center;">Options</th>
+		</tr>
+		<tr>
+		  <th width="40px" style="text-align: center;">From</th>
+		  <th width="40px" style="text-align: center;">To</th>
+		  <th width="45px" style="text-align: center;">Update</th>
+		  <th width="45px" style="text-align: center;">Delete</th>
+		</tr></thead>
+	 <tbody>
+		<tr th:each="sensor : ${allSensors}"  height="60px">
+		  <td th:text="${sensor.sensorId}"></td>
+		  <td th:text="${sensor.name}"></td>
+			<td th:text="${sensor.model}"></td>
+			<td th:text="${sensor.rangeFrom}" style="text-align: center;"></td>
+			<td th:text="${sensor.rangeTo}" style="text-align: center;"></td>
+			<td><span th:text="${sensor.sensorType.type}"/>, <span th:text="${sensor.sensorType.unit}"/></td>
+			<td th:text="${sensor.location}"></td>
+			<td th:text="${sensor.description}"></td>
+			<td>
+				<a th:href="@{/admin/updateInfo(sensorId=${sensor.sensorId})}">
+					<button type="button">Update</button>
+				</a>
+			</td>
+			<td>
+				<a th:href="@{/admin/deleteInfo(sensorId=${sensor.sensorId})}">
+					<button type="button">Delete</button>
+				</a>
+			</td>
+		</tr>
+	 </tbody>
+	 </table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Edit Sensor</title>
+	<style>
+		.error {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<h2>Sensor Data</h2>
+	<form th:action="@{/admin/saveSensor}" th:object="${sensor}" method="post">
+		<input type="hidden" th:field="*{sensorId}"/>
+
+		Name:<br><input type="text" th:field="*{name}"/>
+		<span th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"/>
+		<br>
+
+		Model:<br><input type="text" th:field="*{model}"/>
+		<span th:if="${#fields.hasErrors('model')}" th:errorclass="error" th:errors="*{model}"/>
+		<br><br>
+		
+		Range:<br>From:<input type="text" th:field="*{rangeFrom}"/>
+		<span th:if="${#fields.hasErrors('rangeFrom')}" th:errorclass="error" th:errors="*{rangeFrom}"/>
+		<br>
+		To:<input type="text" th:field="*{rangeTo}"/>
+		<span th:if="${#fields.hasErrors('rangeTo')}" th:errorclass="error" th:errors="*{rangeTo}"/>
+		<br>
+		<br>
+
+		Type:
+		<br><select th:field="*{sensorTypeEnum}">
+			<option th:each="typeOpt : ${T(com.sensors.ocr_test.enums.SensorTypeEnum).values()}"
+				th:value="${typeOpt}" th:text="${typeOpt}"/>
+			</option>
+		</select>
+		<br>
+		
+		Location:<br><input type="text" th:field="*{location}"/>
+		<span th:if="${#fields.hasErrors('location')}" th:errorclass="error" th:errors="*{location}"/>
+		<br>
+		
+		Description:<br><textarea type="text" th:field="*{description}" style="height: 100px;width: 200;resize: none;"></textarea>
+		<span th:if="${#fields.hasErrors('description')}" th:errorclass="error" th:errors="*{description}"/>
+		<br>
+		
+		<input type="submit" value="OK">
+	</form>
+</body>
+</html>
