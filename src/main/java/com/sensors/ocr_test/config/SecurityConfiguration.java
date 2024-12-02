@@ -34,12 +34,12 @@ public class SecurityConfiguration {
 	public UserDetailsService userDetailsService(){
 		UserDetails normalUser = User.builder()
 			.username("user")
-			.password("$2a$12$hRG3kjtvWumqidgdxZpO2eseI3WqluwlJBzAwJBvebFrOpakCN90W")
+			.password("$2a$12$hRG3kjtvWumqidgdxZpO2eseI3WqluwlJBzAwJBvebFrOpakCN90W") //1234
 			.roles("USER")
 			.build();
 		UserDetails adminUser = User.builder()
 			.username("admin")
-			.password("$2a$12$cuyu4yp4AyLtM4e66vUV3upufn7xLGp9TtFLtyLsyYfbonTlyPYTi")
+			.password("$2a$12$cuyu4yp4AyLtM4e66vUV3upufn7xLGp9TtFLtyLsyYfbonTlyPYTi") //9876
 			.roles("ADMIN", "USER")
 			.build();
 		return new InMemoryUserDetailsManager(normalUser, adminUser);
